@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "pesart",
+  "version": "${version}",
+
+  "name": "Pesart Mod",
+  "description": "ubermod.",
+  "authors": [
+    "Exopteron",
+    "PrismaticYT"
+  ],
+
+  "license": "GPLv3",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.exoprism.pesart.Pesart"
+    ]
+  },
+  "mixins": [
+    "pesart.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  }
+}
