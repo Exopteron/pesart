@@ -1,5 +1,7 @@
 package com.exomatic.pesart.blocks;
 
+import com.exomatic.pesart.Pesart;
+import com.exomatic.pesart.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -18,8 +20,8 @@ public class PesartBlocksInitializer {
     }
 
     public static void setup() {
-        for (Map.Entry<String, Block> entry : entries.entrySet()) {
-            Registry.register(Registry.BLOCK, new Identifier(Reference.MODID, entry.getKey()), entry.getValue());
-        }
+        entries.forEach((name, block) -> {
+            Registry.register(Registry.BLOCK, new Identifier(Reference.MODID, name), block);
+        });
     }
 }
