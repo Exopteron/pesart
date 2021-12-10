@@ -1,6 +1,10 @@
-package com.exoprism.pesart;
+package com.exomatic.pesart;
 
 import net.fabricmc.api.ModInitializer;
+
+import com.exomatic.pesart.blocks.PesartBlocksInitializer;
+import com.exomatic.pesart.items.PesartItemsInitializer;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,6 +13,7 @@ public class Pesart implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+		PesartItemsInitializer.setup();
+		PesartBlocksInitializer.setup();
 	}
 }

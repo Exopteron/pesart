@@ -15,7 +15,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.exoprism.pesart.Pesart"
+      "com.exomatic.pesart.Pesart"
+    ],
+    "client": [
+      "com.exomatic.pesart.client.PesartClientInitializer"
     ]
   },
   "mixins": [
