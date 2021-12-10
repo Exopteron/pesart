@@ -7,6 +7,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
+import java.util.Map;
+
+import com.exomatic.pesart.Reference;
 
 public class PesartBlocksInitializer {
     private static HashMap<String, Block> entries = new HashMap<>();
@@ -22,9 +25,7 @@ public class PesartBlocksInitializer {
     BlastWallBlock BLAST_WALL_ADVANCED = (BlastWallBlock) add("blast_wall_advanced", new BlastWallBlock(80.0F));
 
     public static void setup() {
-        Pesart.LOGGER.info("Registering blocks!");
         entries.forEach((name, block) -> {
-            Pesart.LOGGER.debug("Registering block '" + name + "'!");
             Registry.register(Registry.BLOCK, new Identifier(Reference.MODID, name), block);
         });
     }
