@@ -2,35 +2,22 @@ package com.exomatic.pesart.blocks;
 
 import java.util.List;
 
-import com.exomatic.pesart.Pesart;
-import com.exomatic.pesart.network.packet.PacketJump;
-import com.exopteron.network.ExoNetworkManager;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.ServerTask;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult.Type;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.BlockStateRaycastContext;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
 
 public class ElevatorBlock extends Block {
     private int elevatorRange;
