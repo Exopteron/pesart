@@ -33,9 +33,10 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class ElevatorBlock extends Block {
-
-    public ElevatorBlock() {
+    private int elevatorRange;
+    public ElevatorBlock(int elevatorRange) {
         super(FabricBlockSettings.of(Material.METAL));
+        this.elevatorRange = elevatorRange;
     }
     @Override
     public void appendTooltip(ItemStack stack, BlockView world, List<Text> tooltip, TooltipContext options) {
@@ -54,7 +55,7 @@ public class ElevatorBlock extends Block {
         int i;
         BlockPos pos2 = null;
         boolean found = false;
-        for (i = 1; i < 5; i++) {
+        for (i = 1; i < this.elevatorRange + 1; i++) {
             pos2 = pos.add(0, i, 0);
             BlockState potentialElevator = player.world.getBlockState(pos2);
             if (potentialElevator.getBlock() instanceof ElevatorBlock) {
@@ -67,7 +68,7 @@ public class ElevatorBlock extends Block {
         }
         BlockPos pos3;
         for (i = 1; i < 3; i++) {
-            pos3 = pos.add(0, i, 0);
+            pos3 = pos2.add(0, i, 0);
             BlockState checkBlock = player.world.getBlockState(pos3);
             if (!checkBlock.isAir()) {
                 return;
@@ -82,7 +83,7 @@ public class ElevatorBlock extends Block {
         int i;
         BlockPos pos2 = null;
         boolean found = false;
-        for (i = 1; i < 5; i++) {
+        for (i = 1; i < this.elevatorRange + 1; i++) {
             pos2 = pos.subtract(new Vec3i(0, i, 0));
             BlockState potentialElevator = player.world.getBlockState(pos2);
             if (potentialElevator.getBlock() instanceof ElevatorBlock) {
@@ -95,7 +96,7 @@ public class ElevatorBlock extends Block {
         }
         BlockPos pos3;
         for (i = 1; i < 3; i++) {
-            pos3 = pos.add(0, i, 0);
+            pos3 = pos2.add(0, i, 0);
             BlockState checkBlock = player.world.getBlockState(pos3);
             if (!checkBlock.isAir()) {
                 return;
