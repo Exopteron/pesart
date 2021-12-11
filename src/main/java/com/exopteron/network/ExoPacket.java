@@ -19,8 +19,11 @@ package com.exopteron.network;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
 
-public interface IExoPacket {
-    public void read(PacketByteBuf buf);
-    public void write(PacketByteBuf buf);
-    public void handle(PlayerEntity player, Side side);
+public abstract class ExoPacket {
+    public ExoPacket() {
+        
+    }
+    public abstract void read(PacketByteBuf buf);
+    public abstract void write(PacketByteBuf buf);
+    public abstract void handle(PlayerEntity player, Side side);
 }

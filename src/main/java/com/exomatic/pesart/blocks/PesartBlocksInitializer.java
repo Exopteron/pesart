@@ -1,6 +1,8 @@
 package com.exomatic.pesart.blocks;
 
 import com.exomatic.pesart.Reference;
+import com.exomatic.pesart.items.PesartItemsInitializer;
+
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -21,11 +23,11 @@ public class PesartBlocksInitializer {
     public static final BlastWallBlock BLAST_WALL_REINFORCED = (BlastWallBlock) add("blast_wall_reinforced", new BlastWallBlock(30.0F));
     public static final BlastWallBlock BLAST_WALL_INDUSTRIAL = (BlastWallBlock) add("blast_wall_industrial", new BlastWallBlock(50.0F));
     public static final BlastWallBlock BLAST_WALL_ADVANCED = (BlastWallBlock) add("blast_wall_advanced", new BlastWallBlock(80.0F));
-
+    public static final Block ELEVATOR_BLOCK = add("elevator_block", new ElevatorBlock(7));
     public static void setup() {
         entries.forEach((name, block) -> {
             Registry.register(Registry.BLOCK, new Identifier(Reference.MODID, name), block);
-            Registry.register(Registry.ITEM, new Identifier(Reference.MODID, name), new BlockItem(block, new FabricItemSettings()));
+            Registry.register(Registry.ITEM, new Identifier(Reference.MODID, name), new BlockItem(block, new FabricItemSettings().group(PesartItemsInitializer.CREATIVE_TAB)));
         });
     }
 }

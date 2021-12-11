@@ -3,6 +3,7 @@ package com.exomatic.pesart;
 import net.fabricmc.api.ModInitializer;
 
 import com.exomatic.pesart.blocks.PesartBlocksInitializer;
+import com.exomatic.pesart.callbacks.PesartCallbackInitializer;
 import com.exomatic.pesart.commands.PesartCommandsInitializer;
 import com.exomatic.pesart.entities.PesartEntitiesInitializer;
 import com.exomatic.pesart.fluids.PesartFluidsInitializer;
@@ -23,5 +24,6 @@ public class Pesart implements ModInitializer {
 		PesartFluidsInitializer.setup();
 		PesartEntitiesInitializer.setup();
 		PesartCommandsInitializer.setup();
+		PesartCallbackInitializer.setup();
 	}
 }

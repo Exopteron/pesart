@@ -35,24 +35,24 @@ import oshi.util.tuples.Pair;
 
 public class ExoNetworkManager {
     public static ExoNetworkManager INSTANCE = new ExoNetworkManager(new Identifier(Reference.MODID, "main"));
-    public HashMap<Integer, IExoPacket> idToPackets;
-    public HashMap<Class<? extends IExoPacket>, Integer> packetToId;
+    public HashMap<Integer, Class<? extends ExoPacket>> idToPackets;
+    public HashMap<Class<? extends ExoPacket>, Integer> packetToId;
     public Identifier channel;
     public ExoNetworkManager(Identifier channel) {
-        this.idToPackets = new HashMap<Integer, IExoPacket>();
-        this.packetToId = new HashMap<Class<? extends IExoPacket>, Integer>();
+        this.idToPackets = new HashMap<Integer, Class<? extends ExoPacket>>();
+        this.packetToId = new HashMap<Class<? extends ExoPacket>, Integer>();
         this.channel = channel;
         this.registerServerHandler();
     }
-    public void registerPacket(int id, Class<? extends IExoPacket> packet) {
+    public void registerPacket(int id, Class<? extends ExoPacket> packet) {
         try {
             this.packetToId.put(packet, id);
-            this.idToPackets.put(id, packet.getConstructor().newInstance());
+            this.idToPackets.put(id, packet);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public Packet<?> assemble(IExoPacket packet) {
+    public Packet<?> assemble(ExoPacket packet) {
         PacketByteBuf buf = PacketByteBufs.create();
         Integer packetID = this.packetToId.get(packet.getClass());
         if (packetID != null) {
@@ -62,7 +62,7 @@ public class ExoNetworkManager {
         }
         return null;
     }
-    public void sendPacketToClient(IExoPacket packet, ServerPlayerEntity player) {
+    public void sendPacketToClient(ExoPacket packet, ServerPlayerEntity player) {
         PacketByteBuf buf = PacketByteBufs.create();
         Integer packetID = this.packetToId.get(packet.getClass());
         if (packetID != null) {
@@ -72,7 +72,7 @@ public class ExoNetworkManager {
         }
     }
     @Environment(EnvType.CLIENT)
-    public void sendPacketToServer(IExoPacket packet) {
+    public void sendPacketToServer(ExoPacket packet) {
         PacketByteBuf buf = PacketByteBufs.create();
         Integer packetID = this.packetToId.get(packet.getClass());
         if (packetID != null) {
@@ -84,15 +84,19 @@ public class ExoNetworkManager {
     private void registerServerHandler() {
         ServerPlayNetworking.registerGlobalReceiver(this.channel, (server, player, handler, buf, responseSender) -> {
             int packetID = buf.readVarInt();
-            IExoPacket packet = this.idToPackets.get(packetID);
+            Class<? extends ExoPacket> packet = this.idToPackets.get(packetID);
             if (packet != null) {
-                packet.read(buf);
-            }
-            server.execute(() -> {
-                if (packet != null) {
-                    packet.handle(player, Side.LOGICAL_SERVER);
+                try {
+                    ExoPacket instance = packet.getConstructor().newInstance();
+                    instance.read(buf);
+                    server.execute(() -> {
+                            instance.handle(player, Side.LOGICAL_SERVER);
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // TODO handle gracefully
                 }
-            });
+            }
         });
     }
 }
