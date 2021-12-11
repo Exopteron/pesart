@@ -12,11 +12,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.ServerTask;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult.Type;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockStateRaycastContext;
 import net.minecraft.world.World;
 
@@ -24,6 +28,9 @@ public class ElevatorBlock extends Block {
 
     public ElevatorBlock() {
         super(FabricBlockSettings.of(Material.METAL));
+    }
+    private void playSound(PlayerEntity player) {
+        player.playSound(SoundEvents.ENTITY_ARMOR_STAND_PLACE, SoundCategory.BLOCKS, 1, 1);
     }
     public void goUp(PlayerEntity player, BlockState state, BlockPos pos) {
         int i;
@@ -51,6 +58,7 @@ public class ElevatorBlock extends Block {
         player.teleport(pos2.getX() + 0.5, pos2.getY() + 1, pos2.getZ() + 0.5);
         player.addVelocity(0, 0.25, 0);
         player.velocityModified = true;
+        playSound(player);
     }
     public void goDown(PlayerEntity player, BlockState state, BlockPos pos) {
         int i;
@@ -76,5 +84,6 @@ public class ElevatorBlock extends Block {
             }
         }
         player.teleport(pos2.getX() + 0.5, pos2.getY() + 1, pos2.getZ() + 0.5);
+        playSound(player);
     }
 }
