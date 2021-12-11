@@ -2,6 +2,8 @@ package com.exomatic.pesart.blocks;
 
 import com.exomatic.pesart.Pesart;
 import com.exomatic.pesart.Reference;
+import com.exomatic.pesart.items.PesartItemsInitializer;
+
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -29,7 +31,7 @@ public class PesartBlocksInitializer {
     public static void setup() {
         entries.forEach((name, block) -> {
             Registry.register(Registry.BLOCK, new Identifier(Reference.MODID, name), block);
-            Registry.register(Registry.ITEM, new Identifier(Reference.MODID, name), new BlockItem(block, new FabricItemSettings()));
+            Registry.register(Registry.ITEM, new Identifier(Reference.MODID, name), new BlockItem(block, new FabricItemSettings().group(PesartItemsInitializer.CREATIVE_TAB)));
         });
     }
 }
