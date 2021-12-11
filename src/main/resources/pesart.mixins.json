@@ -4,8 +4,11 @@
   "package": "com.exomatic.pesart.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "ServerPlayNetworkHandlerMixin"
   ],
-  "client": [],
+  "client": [
+    "client.PlayerEntityMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
