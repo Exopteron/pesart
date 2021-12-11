@@ -21,7 +21,7 @@ public class BlastWallBlock extends Block {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         super.appendTooltip(stack, world, tooltip, options);
-        tooltip.add(new TranslatableText("tooltip.pesart." + this.getName()).formatted(Formatting.GRAY));
-        tooltip.add(new TranslatableText("tooltip.pesart." + this.getName() + ".flavour").formatted(Formatting.ITALIC, Formatting.DARK_GRAY));
+        tooltip.add(new TranslatableText("tooltip.pesart." + this.getTranslationKey()).formatted(Formatting.GRAY));
+        tooltip.add(new TranslatableText("tooltip.pesart." + this.getTranslationKey() + ".flavour").formatted(Formatting.ITALIC, Formatting.DARK_GRAY));
     }
 }
