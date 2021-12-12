@@ -4,7 +4,8 @@
   "package": "com.exomatic.pesart.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "ServerPlayNetworkHandlerMixin"
+    "ServerPlayNetworkHandlerMixin",
+    "FlightRingMixin"
   ],
   "client": [
     "client.PlayerEntityMixin"
