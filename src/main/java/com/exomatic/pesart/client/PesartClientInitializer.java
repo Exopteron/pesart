@@ -8,5 +8,6 @@ public class PesartClientInitializer implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientNetworking.registerClientNetHandler();
+        EntityRenderers.setup();
     }
 }
