@@ -9,25 +9,55 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.HashMap;
-
 public class PesartBlocksInitializer {
-    private static HashMap<String, Block> entries = new HashMap<>();
-
-    private static <T extends Block> T add(String name, T block) {
-        entries.put(name, block);
-        return block;
-    }
-
-    public static final BlastWallBlock BLAST_WALL_BASIC = add("blast_wall_basic", new BlastWallBlock(20.0F));
-    public static final BlastWallBlock BLAST_WALL_REINFORCED = add("blast_wall_reinforced", new BlastWallBlock(30.0F));
-    public static final BlastWallBlock BLAST_WALL_INDUSTRIAL = add("blast_wall_industrial", new BlastWallBlock(50.0F));
-    public static final BlastWallBlock BLAST_WALL_ADVANCED = add("blast_wall_advanced", new BlastWallBlock(80.0F));
-    public static final ElevatorBlock ELEVATOR_BLOCK = add("elevator_block", new ElevatorBlock(7));
     public static void setup() {
-        entries.forEach((name, block) -> {
-            Registry.register(Registry.BLOCK, new Identifier(Reference.MODID, name), block);
-            Registry.register(Registry.ITEM, new Identifier(Reference.MODID, name), new BlockItem(block, new FabricItemSettings().group(PesartItemsInitializer.CREATIVE_TAB)));
-        });
+        BlockEntry.setup();
+    }
+    public static enum BlockEntry {
+        BLAST_WALL_BASIC("blast_wall_basic", new BlastWallBlock(20.0F)),
+        BLAST_WALL_REINFORCED("blast_wall_reinforced", new BlastWallBlock(30.0F)),
+        BLAST_WALL_INDUSTRIAL("blast_wall_industrial", new BlastWallBlock(50.0F)),
+        BLAST_WALL_ADVANCED("blast_wall_advanced", new BlastWallBlock(80.0F)),
+        ELEVATOR_BLOCK("elevator_block", new ElevatorBlock(7))
+        ;
+        private Identifier identifier;
+        private Block block;
+        private BlockItem blockItem;
+        public <T extends BlockItem> T getBlockItem() {
+            if (blockItem == null) {
+                return null;
+            }
+            try {
+                return (T) blockItem;
+            } catch (ClassCastException e) {
+                return null;
+            }
+        }
+        public <T extends Block> T getBlock() {
+            try {
+                return (T) block;
+            } catch (ClassCastException e) {
+                return null;
+            }
+        }
+        public Identifier getIdentifier() {
+            return this.identifier;
+        }
+        private <T extends Block, B extends BlockItem> BlockEntry(String name, T block, B item) {
+            this.identifier = new Identifier(Reference.MODID, name);
+            this.blockItem = item;
+            this.block = block;
+        }
+        private <T extends Block> BlockEntry(String name, T block) {
+            this(name, block, new BlockItem(block, new FabricItemSettings().group(PesartItemsInitializer.CREATIVE_TAB)));
+        }
+        public static void setup() {
+            for (BlockEntry b : BlockEntry.values()) {
+                Registry.register(Registry.BLOCK, b.getIdentifier(), b.getBlock());
+                if (b.getBlockItem() != null) {
+                    Registry.register(Registry.ITEM, b.getIdentifier(), b.getBlockItem());
+                }
+            }
+        }
     }
 }
