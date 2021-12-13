@@ -1,6 +1,8 @@
 package com.exomatic.pesart.blocks;
 
 import com.exomatic.pesart.blocks.entities.ShelfBlockEntity;
+import com.exomatic.pesart.client.gui.ShelfConfigGui;
+
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractPressurePlateBlock;
 import net.minecraft.block.Block;
@@ -11,14 +13,11 @@ import net.minecraft.block.Material;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.TransparentBlock;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -71,22 +70,15 @@ public class ShelfBlock extends TransparentBlock implements BlockEntityProvider 
             if (player.isSneaking()) {
                 BlockEntity blockEntity = world.getBlockEntity(pos);
                 if (blockEntity != null && blockEntity instanceof ShelfBlockEntity shelfBlockEntity) {
-                    boolean showAlways = !shelfBlockEntity.showAlways;
-                    if (showAlways) {
-                        player.sendMessage(new TranslatableText("info.pesart.shelf.show_always.on").formatted(Formatting.GRAY).formatted(Formatting.ITALIC), false);
-                    } else {
-                        player.sendMessage(new TranslatableText("info.pesart.shelf.show_always.off").formatted(Formatting.GRAY).formatted(Formatting.ITALIC), false);
-                    }
+                    MinecraftClient mc = MinecraftClient.getInstance();
+                    mc.setScreen(new ShelfConfigGui.ShelfConfigScreen(new ShelfConfigGui(shelfBlockEntity)));
                 }
-                player.playSound(SoundEvents.BLOCK_NOTE_BLOCK_BIT, SoundCategory.BLOCKS, 1, 1);
             }
             return ActionResult.SUCCESS;
         }
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity != null && blockEntity instanceof ShelfBlockEntity shelfBlockEntity) {
             if (player.isSneaking()) {
-                shelfBlockEntity.showAlways ^= true;
-                world.updateListeners(pos, state, state, 2);
                 return ActionResult.SUCCESS;
             } else {
                 ItemStack handItem = player.getInventory().getMainHandStack().copy();

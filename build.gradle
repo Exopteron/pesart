@@ -2,7 +2,12 @@ plugins {
 	id 'fabric-loom' version '0.10-SNAPSHOT'
 	id 'maven-publish'
 }
-
+repositories {
+	maven {
+        name = "CottonMC"
+        url = "https://server.bbkr.space/artifactory/libs-release"
+    }
+}
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
@@ -26,6 +31,8 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	modImplementation include("io.github.cottonmc:LibGui:5.1.0+1.18")
 }
 
 processResources {

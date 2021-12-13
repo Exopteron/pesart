@@ -4,6 +4,6 @@
     "tooltip.pesart.block.pesart.elevator_block": "It's an elevator.",
     "tooltip.pesart.block.pesart.elevator_block.flavour": "It goes up and down!",
     "block.pesart.shelf_block": "Shelf",
-    "info.pesart.shelf.show_always.on": "This shelf will now always show the item name.",
-    "info.pesart.shelf.show_always.off": "This shelf will no longer always show the item name."
+    "gui.pesart.shelf.show_always.on": "Show nametag? true",
+    "gui.pesart.shelf.show_always.off": "Show nametag? false"
 }
