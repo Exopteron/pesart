@@ -43,12 +43,12 @@ public class PesartBlocksInitializer {
         public Identifier getIdentifier() {
             return this.identifier;
         }
-        private <T extends Block, B extends BlockItem> BlockEntry(String name, T block, B item) {
+        private BlockEntry(String name, Block block, BlockItem item) {
             this.identifier = new Identifier(Reference.MODID, name);
             this.blockItem = item;
             this.block = block;
         }
-        private <T extends Block> BlockEntry(String name, T block) {
+        private BlockEntry(String name, Block block) {
             this(name, block, new BlockItem(block, new FabricItemSettings().group(PesartItemsInitializer.CREATIVE_TAB)));
         }
         public static void setup() {
