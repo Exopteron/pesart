@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "": {
+            "model": "pesart:block/shelf_block"
+        }
+    }
+}

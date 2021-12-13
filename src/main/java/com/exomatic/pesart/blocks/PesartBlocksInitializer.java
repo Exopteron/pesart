@@ -1,6 +1,7 @@
 package com.exomatic.pesart.blocks;
 
 import com.exomatic.pesart.Reference;
+import com.exomatic.pesart.blocks.entities.PesartBEInitializer;
 import com.exomatic.pesart.items.PesartItemsInitializer;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -12,13 +13,15 @@ import net.minecraft.util.registry.Registry;
 public class PesartBlocksInitializer {
     public static void setup() {
         BlockEntry.setup();
+        PesartBEInitializer.setup();
     }
     public static enum BlockEntry {
         BLAST_WALL_BASIC("blast_wall_basic", new BlastWallBlock(20.0F)),
         BLAST_WALL_REINFORCED("blast_wall_reinforced", new BlastWallBlock(30.0F)),
         BLAST_WALL_INDUSTRIAL("blast_wall_industrial", new BlastWallBlock(50.0F)),
         BLAST_WALL_ADVANCED("blast_wall_advanced", new BlastWallBlock(80.0F)),
-        ELEVATOR_BLOCK("elevator_block", new ElevatorBlock(7))
+        ELEVATOR_BLOCK("elevator_block", new ElevatorBlock(7)),
+        SHELF_BLOCK("shelf_block", new ShelfBlock()),
         ;
         private Identifier identifier;
         private Block block;

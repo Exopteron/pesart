@@ -39,6 +39,7 @@ public class ElevatorBlock extends Block {
         }
     }
     public void goUp(PlayerEntity player, BlockState state, BlockPos pos) {
+        player.setFrozenTicks(2);
         int i;
         BlockPos pos2 = null;
         boolean found = false;

@@ -27,6 +27,7 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
@@ -49,13 +50,13 @@ public class ExoNetworkManager {
             e.printStackTrace();
         }
     }
-    public Packet<?> assemble(ExoPacket packet) {
+    public Packet<ClientPlayPacketListener> assemble(ExoPacket packet) {
         PacketByteBuf buf = PacketByteBufs.create();
         Integer packetID = this.packetToId.get(packet.getClass());
         if (packetID != null) {
             buf.writeVarInt(packetID);
             packet.write(buf);
-            return ServerPlayNetworking.createS2CPacket(this.channel, buf);
+            return (Packet<ClientPlayPacketListener>) ServerPlayNetworking.createS2CPacket(this.channel, buf);
         }
         return null;
     }
