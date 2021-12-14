@@ -9,6 +9,7 @@ import com.exomatic.pesart.entities.PesartEntitiesInitializer;
 import com.exomatic.pesart.fluids.PesartFluidsInitializer;
 import com.exomatic.pesart.items.PesartItemsInitializer;
 import com.exomatic.pesart.network.PesartNetworkInitializer;
+import com.exomatic.pesart.screen.PesartScreenInitializer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,5 +26,6 @@ public class Pesart implements ModInitializer {
 		PesartEntitiesInitializer.setup();
 		PesartCommandsInitializer.setup();
 		PesartCallbackInitializer.setup();
+		PesartScreenInitializer.setup();
 	}
 }

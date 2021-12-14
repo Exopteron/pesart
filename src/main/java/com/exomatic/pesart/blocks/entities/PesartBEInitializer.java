@@ -8,7 +8,9 @@ import net.minecraft.util.registry.Registry;
 
 public class PesartBEInitializer {
     public static BlockEntityType<ShelfBlockEntity> SHELF_BLOCK_ENTITY;
+    public static BlockEntityType<ExoFurnaceBlockEntity> EF_BLOCK_ENTITY;
     public static void setup() {
         SHELF_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, PesartBlocksInitializer.BlockEntry.SHELF_BLOCK.getIdentifier(), FabricBlockEntityTypeBuilder.create(ShelfBlockEntity::new, PesartBlocksInitializer.BlockEntry.SHELF_BLOCK.getBlock()).build());
+        EF_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, PesartBlocksInitializer.BlockEntry.EXO_FURNACE.getIdentifier(), FabricBlockEntityTypeBuilder.create(ExoFurnaceBlockEntity::new, PesartBlocksInitializer.BlockEntry.EXO_FURNACE.getBlock()).build());
     }
 }

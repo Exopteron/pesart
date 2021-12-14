@@ -22,6 +22,7 @@ public class PesartBlocksInitializer {
         BLAST_WALL_ADVANCED("blast_wall_advanced", new BlastWallBlock(80.0F)),
         ELEVATOR_BLOCK("elevator_block", new ElevatorBlock(7)),
         SHELF_BLOCK("shelf_block", new ShelfBlock()),
+        EXO_FURNACE("exo_furnace", new ExoFurnace())
         ;
         private Identifier identifier;
         private Block block;
