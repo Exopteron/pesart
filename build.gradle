@@ -33,6 +33,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modImplementation include("io.github.cottonmc:LibGui:5.1.0+1.18")
+	modImplementation include(files("libs/exoepiclib-0.1.0.jar"))
 }
 
 processResources {

@@ -16,21 +16,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 package com.exomatic.pesart.network;
 
+import com.exomatic.pesart.Reference;
 import com.exomatic.pesart.network.packet.PacketJump;
 import com.exomatic.pesart.network.packet.PacketJumpOnBlock;
 import com.exomatic.pesart.network.packet.PacketSetShelfConfig;
 import com.exopteron.network.ExoNetworkManager;
 
+import net.minecraft.util.Identifier;
+
 public class PesartNetworkInitializer {
     private static int packetID = 0;
+    public static ExoNetworkManager INSTANCE = new ExoNetworkManager(new Identifier(Reference.MODID, "main"));
     public static void setup() {
-        ExoNetworkManager.INSTANCE.registerPacket(packetID++, PacketJumpOnBlock.class);
-        ExoNetworkManager.INSTANCE.registerPacket(packetID++, PacketJump.class);
-        ExoNetworkManager.INSTANCE.registerPacket(packetID++, PacketSetShelfConfig.class);
+        INSTANCE.registerPacket(packetID++, PacketJumpOnBlock.class);
+        INSTANCE.registerPacket(packetID++, PacketJump.class);
+        INSTANCE.registerPacket(packetID++, PacketSetShelfConfig.class);
         /*
             for prism:
             if you want to register a packet, do 
-            ExoNetworkManager.INSTANCE.registerPacket(packetID++, (class that implements ExoPacket).class);
+            INSTANCE.registerPacket(packetID++, (class that implements ExoPacket).class);
         */
     }
 }

@@ -17,6 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package com.exomatic.pesart.client.gui;
 
 import com.exomatic.pesart.blocks.entities.ShelfBlockEntity;
+import com.exomatic.pesart.network.PesartNetworkInitializer;
 import com.exomatic.pesart.network.packet.PacketSetShelfConfig;
 import com.exopteron.network.ExoNetworkManager;
 
@@ -74,6 +75,6 @@ public class ShelfConfigGui extends LightweightGuiDescription {
     }
     private void sync() {
         this.blockEntity.showAlways = this.showTag;
-        ExoNetworkManager.INSTANCE.sendPacketToServer(new PacketSetShelfConfig(this.blockEntity.getPos(), this.showTag));
+        PesartNetworkInitializer.INSTANCE.sendPacketToServer(new PacketSetShelfConfig(this.blockEntity.getPos(), this.showTag));
     }
 }
