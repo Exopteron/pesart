@@ -3,6 +3,8 @@ package com.exomatic.pesart.blocks;
 import com.exomatic.pesart.blocks.entities.ShelfBlockEntity;
 import com.exomatic.pesart.client.gui.ShelfConfigGui;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractPressurePlateBlock;
 import net.minecraft.block.Block;
@@ -75,7 +77,11 @@ public class ShelfBlock extends TransparentBlock implements BlockEntityProvider 
         }
         super.onBreak(world, pos, state, player);
     }
-    
+    @Environment(EnvType.CLIENT)
+    private void openScreen(ShelfBlockEntity shelfBlockEntity) {
+        MinecraftClient mc = MinecraftClient.getInstance();
+        mc.setScreen(new ShelfConfigGui.ShelfConfigScreen(new ShelfConfigGui(shelfBlockEntity)));
+    }
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
             BlockHitResult hit) {
@@ -83,8 +89,7 @@ public class ShelfBlock extends TransparentBlock implements BlockEntityProvider 
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity != null && blockEntity instanceof ShelfBlockEntity shelfBlockEntity) {
             if (player.isSneaking()) {
-                    MinecraftClient mc = MinecraftClient.getInstance();
-                    mc.setScreen(new ShelfConfigGui.ShelfConfigScreen(new ShelfConfigGui(shelfBlockEntity)));
+                openScreen(shelfBlockEntity);
             } else {
                 if (player.getInventory().getMainHandStack().isEmpty()) {
                     if (!shelfBlockEntity.getHeldItem().isEmpty()) {
