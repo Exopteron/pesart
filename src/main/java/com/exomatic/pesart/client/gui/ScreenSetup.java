@@ -6,6 +6,6 @@ import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 
 public class ScreenSetup {
     public static void setup() {
-        ScreenRegistry.register(PesartScreenInitializer.EXO_FURNACE_GUI, (gui, inventory, title) -> new ExoFurnaceGui.ExoFurnaceScreen(gui, inventory.player, title));
+        ScreenRegistry.<ExoFurnaceGui, ExoFurnaceGui.ExoFurnaceScreen>register(PesartScreenInitializer.EXO_FURNACE_GUI, (gui, inventory, title) -> new ExoFurnaceGui.ExoFurnaceScreen(gui, inventory.player, title));
     }
 }
