@@ -1,3 +1,19 @@
+/* 
+Copyright (c) 2021 Exopteron, PrismaticYT
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 package com.exomatic.pesart.blocks;
 
 import com.exomatic.pesart.blocks.entities.ShelfBlockEntity;
@@ -91,13 +107,6 @@ public class ShelfBlock extends TransparentBlock implements BlockEntityProvider 
             if (player.isSneaking()) {
                 openScreen(shelfBlockEntity);
             } else {
-                if (player.getInventory().getMainHandStack().isEmpty()) {
-                    if (!shelfBlockEntity.getHeldItem().isEmpty()) {
-                        player.playSound(SoundEvents.ENTITY_ITEM_FRAME_REMOVE_ITEM, SoundCategory.BLOCKS, 1, 1);
-                    }
-                } else {
-                    player.playSound(SoundEvents.ENTITY_ITEM_FRAME_ADD_ITEM, SoundCategory.BLOCKS, 1, 1);
-                }
             }
         }
             return ActionResult.SUCCESS;
@@ -108,6 +117,13 @@ public class ShelfBlock extends TransparentBlock implements BlockEntityProvider 
                 return ActionResult.SUCCESS;
             } else {
                 ItemStack handItem = player.getInventory().getMainHandStack().copy();
+                if (player.getInventory().getMainHandStack().isEmpty()) {
+                    if (!shelfBlockEntity.getHeldItem().isEmpty()) {
+                        world.playSound(null, pos, SoundEvents.ENTITY_ITEM_FRAME_REMOVE_ITEM, SoundCategory.BLOCKS, 1, 1);
+                    }
+                } else {
+                    world.playSound(null, pos, SoundEvents.ENTITY_ITEM_FRAME_ADD_ITEM, SoundCategory.BLOCKS, 1, 1);
+                }
                 if (handItem == null) handItem = ItemStack.EMPTY;
                 if (shelfBlockEntity.getHeldItem() == null) shelfBlockEntity.setHeldItem(ItemStack.EMPTY);
                 player.getInventory().setStack(player.getInventory().selectedSlot, shelfBlockEntity.getHeldItem());
