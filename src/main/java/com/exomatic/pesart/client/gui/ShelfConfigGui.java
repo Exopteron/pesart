@@ -19,7 +19,7 @@ package com.exomatic.pesart.client.gui;
 import com.exomatic.pesart.blocks.entities.ShelfBlockEntity;
 import com.exomatic.pesart.network.PesartNetworkInitializer;
 import com.exomatic.pesart.network.packet.PacketSetShelfConfig;
-import com.exopteron.network.ExoNetworkManager;
+import com.exopteron.exoepiclib.network.ExoNetworkManager;
 
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;

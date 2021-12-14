@@ -18,7 +18,7 @@ package com.exomatic.pesart.mixin.client;
 
 import com.exomatic.pesart.network.PesartNetworkInitializer;
 import com.exomatic.pesart.network.packet.PacketJumpOnBlock;
-import com.exopteron.network.ExoNetworkManager;
+import com.exopteron.exoepiclib.network.ExoNetworkManager;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

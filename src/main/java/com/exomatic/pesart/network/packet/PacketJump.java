@@ -16,8 +16,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 package com.exomatic.pesart.network.packet;
 
-import com.exopteron.network.ExoPacket;
-import com.exopteron.network.Side;
+import com.exopteron.exoepiclib.network.ExoPacket;
+import com.exopteron.exoepiclib.network.Side;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;

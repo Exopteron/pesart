@@ -17,8 +17,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package com.exomatic.pesart.network.packet;
 
 import com.exomatic.pesart.blocks.entities.ShelfBlockEntity;
-import com.exopteron.network.ExoPacket;
-import com.exopteron.network.Side;
+import com.exopteron.exoepiclib.network.ExoPacket;
+import com.exopteron.exoepiclib.network.Side;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;

@@ -20,7 +20,7 @@ import com.exomatic.pesart.Reference;
 import com.exomatic.pesart.network.packet.PacketJump;
 import com.exomatic.pesart.network.packet.PacketJumpOnBlock;
 import com.exomatic.pesart.network.packet.PacketSetShelfConfig;
-import com.exopteron.network.ExoNetworkManager;
+import com.exopteron.exoepiclib.network.ExoNetworkManager;
 
 import net.minecraft.util.Identifier;
 
